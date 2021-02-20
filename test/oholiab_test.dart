@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    Awesome awesome;
+    Oholiab oholiab;
 
     setUp(() {
-      awesome = Awesome();
+      oholiab = Oholiab();
     });
 
     test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
+      expect(oholiab, isTrue);
     });
   });
 }
