@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library oholiab;
 
-export 'src/oholiab_base.dart';
+export 'src/Arc/Arc.dart';
 
 // TODO: Export any libraries intended for clients of this package.
