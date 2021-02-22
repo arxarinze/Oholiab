@@ -1,21 +1,38 @@
 import 'dart:html';
 
+import 'dart:web_gl';
+
+import 'package:oholiab/src/Color/Color.dart';
+
+import 'Scene/Scene.dart';
+
 class Arc {
   CanvasElement canvas;
-  bool threeD;
-  dynamic _webgl;
-  Arc({this.canvas, this.threeD}) {
+  bool d3;
+  RenderingContext _webgl;
+  Arc({this.canvas, this.d3 = false}) {
     if (canvas == null) {
-      document.body
-          .appendHtml('<canvas id="oho" width="800" height="600"></canvas>');
+      document.body.appendHtml(
+          '<canvas id="oholiab" width="800" height="600"></canvas>');
       canvas = document.getElementById('oholiab');
     }
-    if (threeD == true) {
-      _webgl =
-          canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!d3) {
+      Webgl = canvas.getContext('webgl');
     } else {
-      _webgl = canvas.getContext3d();
+      Webgl = canvas.getContext3d();
     }
+    //background = Color(red: 0, blue: 0, green: 0, alpha: 1);
   }
-  void render() {}
+  RenderingContext get Webgl {
+    return _webgl;
+  }
+
+  set Webgl(dynamic obj) {
+    _webgl = obj;
+  }
+
+  void render(Scene scene) {
+    ;
+    scene.render(Webgl);
+  }
 }
