@@ -32,7 +32,8 @@ class Arc {
   }
 
   void render(Scene scene) {
-    ;
-    scene.render(Webgl);
+    window.animationFrame.then((e) {
+      scene.render(Webgl);
+    });
   }
 }

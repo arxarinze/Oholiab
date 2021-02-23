@@ -3,10 +3,15 @@ import 'dart:web_gl';
 import 'package:oholiab/src/Arc/Shaders/Shader.dart';
 
 class VertexShader extends Shader {
-  VertexShader(String parameters, String members) : super(parameters, members);
+  VertexShader(String parameters, String members, {String body})
+      : super(parameters, members, body: body);
   void build(webgl) {
-    var shader = webgl.createShader(WebGL.VERTEX_SHADER);
+    shader = webgl.createShader(WebGL.VERTEX_SHADER);
+    print(buildShader());
     webgl.shaderSource(shader, buildShader());
     webgl.compileShader(shader);
+    if (!webgl.getShaderParameter(shader, WebGL.COMPILE_STATUS)) {
+      print(webgl.getShaderInfoLog(shader));
+    }
   }
 }

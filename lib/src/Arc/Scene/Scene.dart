@@ -35,5 +35,12 @@ class Scene {
   void render(webgl) {
     gl = webgl;
     renderBackground();
+    for (var o in content) {
+      o.build(webgl);
+    }
+  }
+
+  void add(obj) {
+    content.add(obj);
   }
 }
