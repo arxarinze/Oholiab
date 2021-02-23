@@ -21,6 +21,9 @@ class Renderable {
       print(webgl.getProgramInfoLog(prg));
     }
     var posAttrib = webgl.getAttribLocation(prg, 'position');
+    var colorUniformLocation = webgl.getUniformLocation(prg, 'u_color');
+    webgl.uniform4f(colorUniformLocation, material.color.red,
+        material.color.green, material.color.blue, material.color.alpha);
     webgl.useProgram(prg);
     webgl.enable(WebGL.DEPTH_TEST);
     webgl.enableVertexAttribArray(posAttrib);
