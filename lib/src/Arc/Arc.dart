@@ -2,8 +2,6 @@ import 'dart:html';
 
 import 'dart:web_gl';
 
-import 'package:oholiab/src/Color/Color.dart';
-
 import 'Scene/Scene.dart';
 
 class Arc {

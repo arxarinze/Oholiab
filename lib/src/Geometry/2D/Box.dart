@@ -1,12 +1,13 @@
 import 'package:oholiab/oholiab.dart';
+import 'package:oholiab/src/Arc/Shaders/VertexShader.dart';
 import 'package:oholiab/src/Geometry/2D/RawBox.dart';
 import 'package:oholiab/src/Geometry/BufferAttribute/Buffer.dart';
 
-class Box {
+class Box implements RawBox {
   double width, height, depth;
-  Point coordinate;
+  Point coordinates;
   @override
-  Vertex position = Vertex(<Point>[
+  var position = Vertex(<Point>[
     Point(-1, 1, 0),
     Point(-1, -1, 0),
     Point(1, 1, 0),
@@ -14,12 +15,23 @@ class Box {
     Point(1, -1, 0),
     Point(-1, -1, 0)
   ]);
+  @override
+  var vertexSize = 3;
+  @override
   Buffer buff;
-  Box({this.width, this.height, this.depth, this.coordinate}) {
-    buff = Buffer(position, 3);
+  @override
+  VertexShader vertexShader;
+
+  Box({this.width, this.height, this.depth, this.coordinates}) {
+    buff = Buffer(position, vertexSize);
+    vertexShader = VertexShader('', 'attribute vec3 position;',
+        body: 'gl_Position = vec4(position,1.0);');
   }
 
-  void build(dynamic webgl) {
+  @override
+  void build(webgl) {
+    webgl.viewport(coordinates.x, coordinates.y, width, height);
     buff.build(webgl);
+    vertexShader.build(webgl);
   }
 }

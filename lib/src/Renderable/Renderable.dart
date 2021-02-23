@@ -16,15 +16,16 @@ class Renderable {
     material.build(webgl);
     webgl.attachShader(prg, material.fragmentShader.shader);
     webgl.linkProgram(prg);
+    webgl.useProgram(prg);
     if (!webgl.getProgramParameter(prg, WebGL.LINK_STATUS)) {
       print('sdsd');
       print(webgl.getProgramInfoLog(prg));
     }
     var posAttrib = webgl.getAttribLocation(prg, 'position');
-    var colorUniformLocation = webgl.getUniformLocation(prg, 'u_color');
+    var colorUniformLocation = webgl.getUniformLocation(prg, 'uPixelColor');
+    print(material.color.arrayColor());
     webgl.uniform4f(colorUniformLocation, material.color.red,
         material.color.green, material.color.blue, material.color.alpha);
-    webgl.useProgram(prg);
     webgl.enable(WebGL.DEPTH_TEST);
     webgl.enableVertexAttribArray(posAttrib);
     webgl.vertexAttribPointer(
