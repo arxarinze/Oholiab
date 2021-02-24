@@ -1,4 +1,4 @@
-import 'package:oholiab/src/Arc/Shaders/FragmentShader.dart';
+import 'package:oholiab/src/Shaders/FragmentShader.dart';
 import 'package:oholiab/src/Color/Color.dart';
 
 class Material {

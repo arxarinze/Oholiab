@@ -1,4 +1,4 @@
-import 'package:oholiab/src/Arc/Shaders/VertexShader.dart';
+import 'package:oholiab/src/Shaders/VertexShader.dart';
 import 'package:oholiab/src/Geometry/BufferAttribute/Buffer.dart';
 import 'package:oholiab/src/Vertex/Vertex.dart';
 
@@ -7,9 +7,10 @@ class RawBox {
   int vertexSize;
   VertexShader vertexShader;
   Buffer buff;
-  RawBox(this.position, this.vertexSize) {
+  RawBox(this.position, this.vertexSize, [this.vertexShader]) {
     buff = Buffer(position, vertexSize);
-    vertexShader = VertexShader('', 'attribute vec3 position;',
+    vertexShader ??= VertexShader(
+        '', 'attribute vec3 position; uniform mat4 uModelTransform;',
         body: 'gl_Position = vec4(position,1.0);');
   }
 

@@ -1,6 +1,6 @@
 import 'dart:web_gl';
 
-import 'package:oholiab/src/Arc/Shaders/Shader.dart';
+import 'package:oholiab/src/Shaders/Shader.dart';
 
 class VertexShader extends Shader {
   VertexShader(String parameters, String members, {String body})

@@ -1,5 +1,5 @@
 import 'package:oholiab/oholiab.dart';
-import 'package:oholiab/src/Arc/Shaders/VertexShader.dart';
+import 'package:oholiab/src/Shaders/VertexShader.dart';
 import 'package:oholiab/src/Geometry/2D/RawBox.dart';
 import 'package:oholiab/src/Geometry/BufferAttribute/Buffer.dart';
 
@@ -22,9 +22,15 @@ class Box implements RawBox {
   @override
   VertexShader vertexShader;
 
-  Box({this.width, this.height, this.depth, this.coordinates}) {
+  Box(
+      {this.width,
+      this.height,
+      this.depth,
+      this.coordinates,
+      this.vertexShader}) {
     buff = Buffer(position, vertexSize);
-    vertexShader = VertexShader('', 'attribute vec3 position;',
+    vertexShader = VertexShader(
+        '', 'attribute vec3 position;uniform mat4 uModelTransform;',
         body: 'gl_Position = vec4(position,1.0);');
   }
 

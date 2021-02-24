@@ -8,7 +8,9 @@ class Scene {
 
   var content = <dynamic>[];
 
-  Scene();
+  Scene() {
+    background ??= Color(alpha: 1, red: 255, blue: 0, green: 0);
+  }
 
   dynamic get gl {
     return _gl;

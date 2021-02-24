@@ -23,13 +23,18 @@ class Renderable {
     }
     var posAttrib = webgl.getAttribLocation(prg, 'position');
     var colorUniformLocation = webgl.getUniformLocation(prg, 'uPixelColor');
-    print(material.color.arrayColor());
-    webgl.uniform4f(colorUniformLocation, material.color.red,
-        material.color.green, material.color.blue, material.color.alpha);
+    print(material.color.webglColor());
+    webgl.uniform4f(
+        colorUniformLocation,
+        material.color.webglColor()[0],
+        material.color.webglColor()[1],
+        material.color.webglColor()[2],
+        material.color.webglColor()[3]);
     webgl.enable(WebGL.DEPTH_TEST);
     webgl.enableVertexAttribArray(posAttrib);
     webgl.vertexAttribPointer(
         posAttrib, rawBox.vertexSize, WebGL.FLOAT, false, 0, 0);
+    print(posAttrib);
     webgl.drawArrays(WebGL.TRIANGLES, 0, 6);
   }
 }
